@@ -172,7 +172,9 @@ onconnect = function(e) {
   port.onmessage = function(e) {
     var message = e.data[0];
     var result = neuron[message.method].apply(neuron, message.arguments);
-    port.postMessage(result);
+    port.postMessage({
+      result: result
+    });
   }
 
 };

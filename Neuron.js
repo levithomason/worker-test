@@ -105,7 +105,6 @@ Neuron.prototype.train = function(targetOutput) {
  * @returns {number}
  */
 Neuron.prototype.activate = function(input) {
-  // console.debug('neuron.activate() with:', values);
   if (this.isBias) {
     this.output = 1;
     return this.output;
