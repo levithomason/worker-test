@@ -52,33 +52,6 @@ function test() {
       };
     }
   });
-
-  //
-  // Parallel Neurons
-  //
-  var workerActivations = _.times(times, function() {
-    return new SharedWorker('WorkerActivation.js')
-  });
-
-  var workerActivationStart = Date.now();
-
-  _.each(workerActivations, function(workerActivation, i) {
-    var message = [{
-      method: 'activate',
-      arguments: [_.random(-1, 1, true)]
-    }];
-
-    // print('POST', message);
-    workerActivation.port.postMessage(message);
-
-    // only add time log on last workerActivation
-    if (i === workerActivations.length - 1) {
-      workerActivation.port.onmessage = function(e) {
-        print('DONE WorkerActivation()', Date.now() - workerActivationStart + 'ms');
-        print('-----------------------------');
-      };
-    }
-  });
 }
 
 test();
